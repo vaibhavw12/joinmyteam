@@ -1,16 +1,10 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const healthRoutes = require('./routes/health.route.js')
 
 dotenv.config()
 const app = express()
-
-app.get('/health', (req, res)=>{
-    res.json({
-        status : 'SUCCESS',
-        message : 'server is up and running'
-    })
-})
 
 const port = process.env.PORT || 5000;
 const url = process.env.MONGO_URL
@@ -24,3 +18,6 @@ app.listen(port, () => {
         console.log(err)
     })
 });
+
+app.use('/api', healthRoutes)
+// app.use('/api/auth', authRoutes)
