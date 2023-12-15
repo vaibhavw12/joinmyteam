@@ -8,7 +8,7 @@ const loggedIn = (req, res, next)=>{
     try{
         const {jwttoken} = req.headers
         const user = jwt.verify(jwttoken, process.env.PrivateKey)
-        console.log(user)
+        // console.log(user)
         next()
     }catch(err){
         console.log(err)
@@ -17,5 +17,8 @@ const loggedIn = (req, res, next)=>{
 }
 
 router.post('/createjob', loggedIn, privateControllers.createJob)
+router.patch('/editjob/:id', loggedIn, privateControllers.editJob)
+router.get('/filterjob', loggedIn, privateControllers.filterjob)
+router.get('/jobdiscription/:id', loggedIn, privateControllers.jobdiscription)
 
 module.exports = router
