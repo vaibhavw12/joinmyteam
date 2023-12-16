@@ -1,0 +1,19 @@
+.home{
+    width: 50vw;
+    height: 100vh;
+}
+.home-img{
+    width: 50vw;
+    height: 100vh;
+}
+.home-text{
+    color: whitesmoke;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    display: flex;
+    width: 50vw;
+    justify-content: center;
+    position: absolute;
+    top: 5vh;
+}

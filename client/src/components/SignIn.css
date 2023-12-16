@@ -1,0 +1,49 @@
+.sign-in{
+    height: 100vh;
+    display: flex;
+}
+.sign-incomp{
+    width: 50vw;
+}
+.home-card{
+    width: 50vw;
+}
+.signintext-1{
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: black;
+}
+.signin-field{
+    width: 35vw;
+    height: 7vh;
+    padding-left: 2vw;
+    border-radius: 10px;
+    border: 1px gray solid;
+    font-size: 18px;
+}
+.signin-card{
+    margin-left: 5vw;
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color:rgba(82, 82, 82, 1);
+}
+.link{
+    color: black;
+}
+.signin-btn{
+    height: 6vh;
+    width: 14vw;
+    letter-spacing: 1px;
+    font-size: 19px;
+    font-weight: 500;
+    background-color: rgba(237, 83, 83, 1);
+    border: none;
+    border-radius: 10px;
+    color: whitesmoke;
+}
+.signin-btn:hover{
+    opacity: 0.8;
+}
