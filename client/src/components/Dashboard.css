@@ -1,0 +1,111 @@
+.dashboard-header{
+    padding-left: 5vw;
+    padding-right: 5vw;
+    height: 14vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, #ff6666, #cc3333); /* Gradient background with different shades of red */
+    border-end-start-radius: 60px;
+    border-end-end-radius: 60px;
+}
+.dashboard-header-left{
+    color: whitesmoke;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+.dashboard-header-right{
+    color: whitesmoke;
+    list-style-type: none;
+    display: flex;
+    gap: 0px 20px;
+}
+.dashboardfilter-cardouter{
+    margin-top: 4vh;
+    display: flex;
+    justify-content: center;
+}
+.dashboardfilter-card{
+    box-shadow: 0px 0px 22px 4px rgba(255, 32, 32, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: whitesmoke;
+    width: 70vw;
+    height: 25vh;
+    gap: 25px 0px;
+}
+.dashboardfilter-inputjobtype{
+    color: rgba(156, 156, 156, 1);
+    border: 1.8px solid rgba(227, 227, 227, 1);
+    padding-left: 2vw;
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-top: 2vh;
+    width: 55vw;
+    height: 6vh;
+    border-radius: 10px;
+}
+.dashboard-selectskills{
+    width: 8vw;
+    height: 6vh;
+    color: rgba(156, 156, 156, 1);
+    border: 1.8px solid rgba(227, 227, 227, 1);
+    border-radius: 6px;
+    text-align: center;
+}
+.dashboardfilter-2{
+    width: 57vw;
+    display: flex;
+    justify-content: space-between;
+}
+.dashboardaddjob-btn{
+    width: 10vw;
+    height: 5vh;
+    color: whitesmoke;
+    background: rgba(237, 83, 83, 1);
+    border: gray;
+    border-radius: 10px;
+}
+.dashboardaddjob-btn:hover{
+    opacity: 0.8;
+}
+.eachjob-card{
+    background-color: aqua;
+}
+.flexskills{
+    width: 35vw;
+    display: grid;
+    grid-template-columns: auto auto auto auto ;
+    gap: 0px 10px;
+}
+.eachflexskill{
+    display: flex;
+    justify-content: space-between;
+    background-color:rgba(255, 238, 238, 1);
+    height: 4vh;
+    width: 8vw;
+}
+.eachtextskill{
+    text-align: center;
+    width: 7vw;
+}
+.jobcard-dashboard{
+    margin-top: 6vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.eachjobcard-dashboard{
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0px;
+}
+.clearskills{
+    color: #ff6666;
+    position: relative;
+    bottom: 15px;
+    right: 20px;
+    font-size: 18px;
+}

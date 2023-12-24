@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import Home from './Home'
 import './SignUp.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate  } from 'react-router-dom'
 import axios from 'axios'
 
 export default function SignIn() {
 
+    const navigate = useNavigate ()
     const [formData, setFormData] = useState({
         name : '',
         email : '',
@@ -21,7 +22,12 @@ export default function SignIn() {
         e.preventDefault()
         axios
           .post("http://localhost:4000/api/auth/register",formData)
-          .then(res => console.log(res.data))
+          .then((res)=>{
+            navigate('/')
+            localStorage.setItem('token', res.data.token)
+            localStorage.setItem('name',res.data.name )
+            console.log(res.data)
+          })
           .catch(err => console.error(err));     
     }
   return (

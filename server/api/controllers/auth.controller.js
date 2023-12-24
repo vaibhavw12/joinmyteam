@@ -9,8 +9,8 @@ const register = async (req, res, next)=>{
     const hashedPassword = bcrypt.hashSync(password, 12)
     try{
         await userModel.create({name, email, mobile, password : hashedPassword})
-        const currentUser = await userModel.findOne({email})
-        const jwtToken = jwt.sign(currentUser.toJSON(),process.env.PrivateKey,{expiresIn : 60*60})
+        // const currentUser = await userModel.findOne({email})
+        const jwtToken = jwt.sign({email},process.env.PrivateKey,{expiresIn : 60*60})
         res.json({
             status : 'SUCCESS',
             name : name,
@@ -34,7 +34,7 @@ const login = async (req, res)=>{
         if(currentUser){
             const decryptPassword = bcrypt.compareSync(password, currentUser.password)
             if(decryptPassword){
-                const jwtToken = jwt.sign(currentUser.toJSON(),process.env.PrivateKey,{expiresIn : 60*60})
+                const jwtToken = jwt.sign({email},process.env.PrivateKey,{expiresIn : 60*60})
                 res.json({
                     status : 'SUCCESS',
                     name : currentUser.name,

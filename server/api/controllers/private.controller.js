@@ -34,25 +34,29 @@ const editJob =async (req, res, next) =>{
 
 const filterjob = async (req, res, next) =>{
     try {
+        // console.log(req.query)
+        
         const { skills, position } = req.query;
         console.log(skills)
         console.log(position)
+        // res.json({
+        //     status : 'SUCCESS'
+        // })
         // const skills = [];
         // const positions = [];
         const searchCriteria = {};
 
-        if (skills.length > 0 || position.length > 0) {
-            // Use $or to perform a logical OR operation
+        if ((skills?.length ?? 0) > 0 || (position?.length ?? 0) > 0) {
             searchCriteria.$or = [];
-
-            if (skills.length > 0) {
-                searchCriteria.$or.push({ skills: { $in: skills } });
+          
+            if (skills?.length > 0) {
+              searchCriteria.$or.push({ skills: { $in: skills } });
             }
-
-            if (position.length > 0) {
-                searchCriteria.$or.push({ position: { $in: position } });
+          
+            if (position?.length > 0) {
+              searchCriteria.$or.push({ position: { $in: position } });
             }
-        }
+          }
 
         // Perform the search using Mongoose
         const filteredJobs = await jobModel.find(searchCriteria);
