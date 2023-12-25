@@ -65,7 +65,7 @@ export default function Dashboard() {
       .catch(err => console.error(err));
     }else{
       axios
-      .get("https://job-finder-app-4foa.onrender.com/api/auth/profile/filterjob", {
+      .get("https://job-finder-app-4foa.onrender.com/api/auth/profile/filterjobByuser", {
         params: {
           skills : selectedSkills, // Replace with your skills array
           position: position, // Replace with your position

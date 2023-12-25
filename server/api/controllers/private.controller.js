@@ -72,7 +72,7 @@ const filterjob = async (req, res, next) =>{
 
 const filterjobByuser = async (req, res, next) =>{
     try {
-        // console.log(req.query)
+        console.log("filterjobByuser")
         
         const { skills, position, name} = req.query;
         console.log('okay')
