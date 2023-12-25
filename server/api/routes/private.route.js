@@ -11,14 +11,14 @@ const loggedIn = (req, res, next)=>{
         // console.log(user)
         next()
     }catch(err){
-        console.log(err)
+        // console.log(err.message)
         next(err)
     }
 }
 
 router.post('/createjob', loggedIn, privateControllers.createJob)
 router.patch('/editjob/:id', loggedIn, privateControllers.editJob)
-router.get('/filterjob', loggedIn, privateControllers.filterjob)
-router.get('/jobdiscription/:id', loggedIn, privateControllers.jobdiscription)
+router.get('/filterjob', privateControllers.filterjob)
+router.get('/jobdiscription/:id', privateControllers.jobdiscription)
 
 module.exports = router

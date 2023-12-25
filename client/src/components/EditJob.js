@@ -7,11 +7,13 @@ import { useNavigate } from 'react-router-dom'
 
 export default function EditJob() {
 
+    const navigate = useNavigate()
     const {jobId} = useParams()
     // console.log(jobId)
     const [obj, setObj] = useState([])
     const [skillStr, setSkillStr] = useState('')
     useEffect(()=>{
+      if(localStorage.getItem('token')){
         axios
           .get(`http://localhost:4000/api/auth/profile/jobdiscription/${jobId}`, {
             headers: {
@@ -30,7 +32,10 @@ export default function EditJob() {
             setSkillStr(arr.join(','))
           })
           .catch(err => console.error(err));
-      },[jobId])
+      }else{
+        navigate('/')
+      }
+      },[jobId, navigate])
 
     const handleChangeSkills = (e)=>{
       setSkillStr(e.target.value)
@@ -38,7 +43,7 @@ export default function EditJob() {
     const handleChange = (e)=>{
       setObj({...obj, [e.target.name] : e.target.value})
     }
-    const navigate = useNavigate()
+    
     const goToViewDetails = (e) =>{
       navigate(`/sign-in/view-job/${jobId}`)
     }
@@ -54,8 +59,11 @@ export default function EditJob() {
             }
           })
           .then(res => console.log(res.data))
-          .catch(err => console.error(err));
-
+          .catch((err)=>{
+            console.error(err)
+            // localStorage.removeItem('token')
+            // localStorage.removeItem('name')
+          })
     }
     return (
         <div className='addjob-comp'>

@@ -1,9 +1,11 @@
 import React from 'react'
 import './JobCard.css'
 import { useNavigate } from 'react-router-dom'
+// import {isLoggedIn} from '../utils/check.js'
 
 export default function JobCard(props) {
-    
+
+    // const [login, setLoggedIn] = useState(isLoggedIn())
     const jobs = props.jobs
     const navigate = useNavigate()
     const goToeditJobs = ()=>{
@@ -36,7 +38,11 @@ export default function JobCard(props) {
                             ))}
                         </div><br></br>
                         <div className='right-skilljobcard-1'>
-                            <button onClick={goToeditJobs} className='edit-skilljobcard'>Edit job</button>
+                            {props.loggedIn ? 
+                                <button onClick={goToeditJobs} className='edit-skilljobcard'>Edit job</button> :
+                                <span></span>
+                            }
+                            
                             <button onClick={goToviewDetails} className='view-skilljobcard'>View details</button>
                         </div>
                     </div>

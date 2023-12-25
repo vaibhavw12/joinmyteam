@@ -2,13 +2,14 @@ import React,{useEffect, useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import './ViewDetails.css'
 import axios from 'axios'
-
+import {isLoggedIn} from '../utils/check.js'
 
 export default function ViewDetails() {
 
     const {jobId} = useParams()
     // console.log(jobId)
 
+    const [login, setLoggedIn] = useState(isLoggedIn())
     const [obj, setObj] = useState([])
     // var obj = {
     // companyName : 'cuvette',
@@ -33,13 +34,30 @@ export default function ViewDetails() {
             }
           })
           .then(res => setObj(res.data.data))
-          .catch(err => console.error(err));
+          .catch((err)=>{
+            console.error(err)
+            // localStorage.removeItem('token')
+            // localStorage.removeItem('name')
+          })
       },[jobId])
-
+    
     const navigate = useNavigate()
     const editpage = ()=>{
         navigate(`/sign-in/edit-job/${jobId}`)
     }
+
+    const logout = ()=>{
+        setLoggedIn(false)
+        localStorage.removeItem('token')
+        localStorage.removeItem('name')
+      }
+
+      const goToLogin = ()=>{
+        navigate('/sign-in')
+      }
+      const goToRegister = ()=>{
+        navigate('/register')
+      }
   return (
     
     <div className='viewdetails-page'>
@@ -50,11 +68,17 @@ export default function ViewDetails() {
             </div>
             {/* <div className="shapes-container"></div> */}
             <div>
-                <ul className='viewdetails-header-right'>
-                    <li>Logout</li>
-                    <li>Hello! Recruiter</li>
-                    <li>profile</li>
+            {login ? 
+                  <ul className='viewdetails-header-right'>
+                  <li onClick={logout}>Logout</li>
+                  <li>Hello! Recruiter</li>
+                  <li>profile</li>
+              </ul> : 
+                <ul className='dashboard-header-right'>
+                  <li><button onClick={goToLogin} className='dashboard-loginbtn'>Login</button></li>
+                  <li><button onClick={goToRegister} className='dashboard-registerbtn'>Register</button></li>
                 </ul>
+              }
             </div>
         </header>
         <div className='jobdetail-intro-card'>
@@ -68,7 +92,10 @@ export default function ViewDetails() {
                     <p>{1}w ago {obj.jobType} {obj.companyName}</p>
                     <div style={{display : 'flex', justifyContent : 'space-between', alignItems : 'center'}}>
                             <h1>{obj.position}</h1>
-                            <button className='jobdetails-editbtn' onClick={editpage}>Edit job</button>
+                            {login ? 
+                                <button className='jobdetails-editbtn' onClick={editpage}>Edit job</button> : 
+                                <span></span>
+                            }
                     </div>
                     <p>{obj.location}</p>
                     <div>

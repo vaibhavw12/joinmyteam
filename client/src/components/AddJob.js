@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './AddJob.css'
 import addjobImg from '../assets/WallpaperDog-20567151 1.png'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
  
 export default function AddJob() {
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
 
+    }else{
+      navigate('/')
+    }
+  },[navigate])
   const [formData, setFormData] = useState({
     companyName : '',
     companyUrl : '',

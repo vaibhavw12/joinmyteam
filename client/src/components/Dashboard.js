@@ -3,12 +3,14 @@ import './Dashboard.css'
 import axios from 'axios';
 import JobCard from './JobCard';
 import { useNavigate } from 'react-router-dom';
+import {isLoggedIn} from '../utils/check.js'
 
 export default function Dashboard() {
 
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [position, setPosition] = useState('')
   const [jobs, setJobs] = useState([])
+  const [login, setLoggedIn] = useState(isLoggedIn())
 
   const handleskills = (e) => {
     // Check if the selected skill already exists in the array
@@ -32,6 +34,18 @@ export default function Dashboard() {
   const navigate = useNavigate()
   const addJob = ()=>{
     navigate('/sign-in/add-job')
+  }
+  const logout = ()=>{
+    setLoggedIn(false)
+    localStorage.removeItem('token')
+    localStorage.removeItem('name')
+  }
+
+  const goToLogin = ()=>{
+    navigate('/sign-in')
+  }
+  const goToRegister = ()=>{
+    navigate('/register')
   }
 
   useEffect(()=>{
@@ -59,11 +73,17 @@ export default function Dashboard() {
             </div>
             {/* <div className="shapes-container"></div> */}
             <div>
-                <ul className='dashboard-header-right'>
-                    <li>Logout</li>
+              {login ? 
+                  <ul className='dashboard-header-right'>
+                    <li onClick={logout}>Logout</li>
                     <li>Hello! Recruiter</li>
                     <li>profile</li>
+                  </ul> : 
+                <ul className='dashboard-header-right'>
+                  <li><button onClick={goToLogin} className='dashboard-loginbtn'>Login</button></li>
+                  <li><button onClick={goToRegister} className='dashboard-registerbtn'>Register</button></li>
                 </ul>
+              }
             </div>
         </header>
         <div className='dashboardfilter-cardouter'>
@@ -95,9 +115,13 @@ export default function Dashboard() {
                       <span className='eachflexskill' key={index}><span className='eachtextskill'>{item}</span><span onClick={() => removeSkill(item)}  className='hideskillbtn'>❌</span></span>
                   ))}
                   </div>
+                  {login ? 
                   <button onClick={addJob} className='dashboardaddjob-btn'>
                     + Add job
-                  </button>
+                  </button> :
+                  <span></span>
+                  }
+                  
               </div>
               <span className='clearskills' onClick={clearArr}>clear</span>
           </div>
@@ -105,7 +129,7 @@ export default function Dashboard() {
         <div className='jobcard-dashboard'>
           <div className='eachjobcard-dashboard'>
             {jobs && jobs.map((item ,index)=>(
-              <span key={index}><JobCard jobs={item}></JobCard></span>
+              <span key={index}><JobCard jobs={item} loggedIn={login}></JobCard></span>
             ))}
           </div>
         </div>

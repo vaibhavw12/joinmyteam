@@ -71,9 +71,6 @@
 .dashboardaddjob-btn:hover{
     opacity: 0.8;
 }
-.eachjob-card{
-    background-color: aqua;
-}
 .flexskills{
     width: 35vw;
     display: grid;
@@ -108,4 +105,19 @@
     bottom: 15px;
     right: 20px;
     font-size: 18px;
+}
+.dashboard-registerbtn{
+    width: 10vw;
+    height: 5vh;
+    color: rgba(237, 83, 83, 1);
+    background: whitesmoke;
+    border: gray;
+    border-radius: 10px;
+}
+.dashboard-loginbtn{
+    width: 10vw;
+    height: 5vh;
+    /* background: transparent; */
+    border-radius: 10px;
+    border: 2px white;
 }
