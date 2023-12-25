@@ -15,7 +15,7 @@ export default function EditJob() {
     useEffect(()=>{
       if(localStorage.getItem('token')){
         axios
-          .get(`http://localhost:4000/api/auth/profile/jobdiscription/${jobId}`, {
+          .get(`https://job-finder-app-4foa.onrender.com/api/auth/profile/jobdiscription/${jobId}`, {
             headers: {
               'Content-Type': 'application/json',
               'jwttoken': localStorage.getItem('token'),  // Include the JWT token in the Authorization header
@@ -52,7 +52,7 @@ export default function EditJob() {
       obj.skills = skillStr.split(',').map(value => value.trim());
       console.log(obj)
       axios
-          .patch(`http://localhost:4000/api/auth/profile/editjob/${jobId}`,obj , {
+          .patch(`https://job-finder-app-4foa.onrender.com/api/auth/profile/editjob/${jobId}`,obj , {
             headers: {
               'Content-Type': 'application/json',
               'jwttoken': localStorage.getItem('token'),  // Include the JWT token in the Authorization header

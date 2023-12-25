@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{} from 'react'
 import './JobCard.css'
 import { useNavigate } from 'react-router-dom'
 // import {isLoggedIn} from '../utils/check.js'
@@ -6,7 +6,15 @@ import { useNavigate } from 'react-router-dom'
 export default function JobCard(props) {
 
     // const [login, setLoggedIn] = useState(isLoggedIn())
+    // const [myJob, setMyJob] = useState()
     const jobs = props.jobs
+    // const name = localStorage.getItem('name')
+    // if(jobs.name === name){
+    //     setMyJob(true)
+    // }else{
+    //     setMyJob(false)
+    // }
+    // console.log(localStorage.getItem('name'))
     const navigate = useNavigate()
     const goToeditJobs = ()=>{
         navigate(`/sign-in/edit-job/${jobs._id}`)

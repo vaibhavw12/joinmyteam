@@ -21,7 +21,7 @@ export default function SignIn() {
   const submitData = (e)=> {
     e.preventDefault()
     axios
-      .post("http://localhost:4000/api/auth/login",formData)
+      .post("https://job-finder-app-4foa.onrender.com/api/auth/login",formData)
       .then((res)=>{
         if(res.data.status === 'FAILED'){
           toast("login failed");

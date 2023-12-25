@@ -3,6 +3,7 @@ import './AddJob.css'
 import addjobImg from '../assets/WallpaperDog-20567151 1.png'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+// import { baseURL } from '../utils/check'
  
 export default function AddJob() {
   const navigate = useNavigate()
@@ -39,10 +40,10 @@ export default function AddJob() {
 
   const submitData = (e)=>{
     e.preventDefault()
-    formData.skills = skillsStr.split(',').map(value => value.trim());
+    formData.skills = skillsStr.split(',').map(value => value.trim().toLowerCase());
     console.log(formData)
     axios
-      .post("http://localhost:4000/api/auth/profile/createjob",formData,{
+      .post("https://job-finder-app-4foa.onrender.com/api/auth/profile/createjob",formData,{
         headers: {
           'Content-Type': 'application/json',
           'jwttoken': localStorage.getItem('token'),  // Include the JWT token in the Authorization header

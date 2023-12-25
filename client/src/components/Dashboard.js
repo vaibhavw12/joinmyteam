@@ -49,8 +49,9 @@ export default function Dashboard() {
   }
 
   useEffect(()=>{
-    axios
-      .get("http://localhost:4000/api/auth/profile/filterjob", {
+    if(!login){
+      axios
+      .get("https://job-finder-app-4foa.onrender.com/api/auth/profile/filterjob", {
         params: {
           skills : selectedSkills, // Replace with your skills array
           position: position, // Replace with your position
@@ -62,7 +63,23 @@ export default function Dashboard() {
       })
       .then(res => setJobs(res.data.data))
       .catch(err => console.error(err));
-  },[selectedSkills, position])
+    }else{
+      axios
+      .get("https://job-finder-app-4foa.onrender.com/api/auth/profile/filterjob", {
+        params: {
+          skills : selectedSkills, // Replace with your skills array
+          position: position, // Replace with your position
+          name : localStorage.getItem('name')
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'jwttoken': localStorage.getItem('token'),  // Include the JWT token in the Authorization header
+        }
+      })
+      .then(res => setJobs(res.data.data))
+      .catch(err => console.error(err));
+    }
+  },[selectedSkills, position, login])
   // 
   return (
     <div>
@@ -94,21 +111,21 @@ export default function Dashboard() {
               <div className='dashboardfilter-2'>
                   <select onChange={handleskills} className='dashboard-selectskills' >
                     {/* <option value="">Skills</option> */}
-                    <option value="HTML">HTML</option>
-                    <option value="CSS">CSS</option>
-                    <option value="React js">React js</option>
-                    <option value="Node js">Node js</option>      
-                    <option value="MongoDb">MongoDb</option>
-                    <option value="MySql">MySql</option>      
-                    <option value="Java">Java</option>
-                    <option value="Python">Python</option>
-                    <option value="Cpp">Cpp</option>        
-                    <option value="Frontend">Frontend</option>
-                    <option value="Backend">Backend</option>      
-                    <option value="Fullstack">Fullstack</option>
-                    <option value="Data Analyst">Data Analyst</option>
-                    <option value="Web 3.0">Web 3.0</option>
-                    <option value="Others">Others</option>
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="react js">React js</option>
+                    <option value="node js">Node js</option>      
+                    <option value="mongodb">MongoDb</option>
+                    <option value="mysql">MySql</option>      
+                    <option value="java">Java</option>
+                    <option value="python">Python</option>
+                    <option value="cpp">Cpp</option>        
+                    <option value="frontend">Frontend</option>
+                    <option value="backend">Backend</option>      
+                    <option value="fullstack">Fullstack</option>
+                    <option value="data analyst">Data Analyst</option>
+                    <option value="web 3.0">Web 3.0</option>
+                    <option value="others">Others</option>
                   </select>
                   <div className='flexskills'>
                             {selectedSkills && selectedSkills.map((item,index)=>(

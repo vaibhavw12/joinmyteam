@@ -35,10 +35,10 @@ const editJob =async (req, res, next) =>{
 const filterjob = async (req, res, next) =>{
     try {
         // console.log(req.query)
-        
+        console.log('hello')
         const { skills, position } = req.query;
-        console.log(skills)
-        console.log(position)
+        // console.log(skills)
+        // console.log(position)
         // res.json({
         //     status : 'SUCCESS'
         // })
@@ -70,6 +70,52 @@ const filterjob = async (req, res, next) =>{
     }
 }
 
+const filterjobByuser = async (req, res, next) =>{
+    try {
+        // console.log(req.query)
+        
+        const { skills, position, name} = req.query;
+        console.log('okay')
+        // console.log(skills)
+        // console.log(position)
+        // res.json({
+        //     status : 'SUCCESS'
+        // })
+        // const skills = [];
+        // const positions = [];
+        
+        // const searchCriteria = {};
+        const baseFilter = { name };
+
+        const additionalFilter = {};
+
+        if ((skills?.length ?? 0) > 0 || (position?.length ?? 0) > 0) {
+            additionalFilter.$or = [];
+          
+            if (skills?.length > 0) {
+                additionalFilter.$or.push({ skills: { $in: skills } });
+            }
+          
+            if (position?.length > 0) {
+                additionalFilter.$or.push({ position: { $in: position } });
+            }
+          }
+
+        // Perform the search using Mongoose
+        // const filteredJobs = await jobModel.find(searchCriteria);
+        const combinedFilter = { ...baseFilter, ...additionalFilter };
+
+        const filteredJobs = await jobModel.find(combinedFilter);
+        res.json({
+            status : 'SUCCESS',
+            data : filteredJobs
+        })
+    } catch (err) {
+        console.error(err);
+        next(err);
+    }
+}
+
 const jobdiscription = async (req, res, next) =>{
     try{
         const {id} = req.params
@@ -89,5 +135,6 @@ module.exports = {
     createJob,
     editJob,
     filterjob,
-    jobdiscription
+    jobdiscription,
+    filterjobByuser
 }

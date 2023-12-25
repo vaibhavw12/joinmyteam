@@ -27,7 +27,7 @@ export default function ViewDetails() {
     // }
     useEffect(()=>{
         axios
-          .get(`http://localhost:4000/api/auth/profile/jobdiscription/${jobId}`, {
+          .get(`https://job-finder-app-4foa.onrender.com/api/auth/profile/jobdiscription/${jobId}`, {
             headers: {
               'Content-Type': 'application/json',
               'jwttoken': localStorage.getItem('token'),  // Include the JWT token in the Authorization header

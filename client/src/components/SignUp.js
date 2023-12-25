@@ -21,7 +21,7 @@ export default function SignIn() {
     const submitData = (e)=>{
         e.preventDefault()
         axios
-          .post("http://localhost:4000/api/auth/register",formData)
+          .post("https://job-finder-app-4foa.onrender.com/api/auth/register",formData)
           .then((res)=>{
             navigate('/')
             localStorage.setItem('token', res.data.token)

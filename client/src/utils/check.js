@@ -4,3 +4,6 @@ export const isLoggedIn = ()=>{
     }
     return false
 }
+export const baseURL = ()=>{
+    return 'https://job-finder-app-4foa.onrender.com'
+}

@@ -19,6 +19,7 @@ const loggedIn = (req, res, next)=>{
 router.post('/createjob', loggedIn, privateControllers.createJob)
 router.patch('/editjob/:id', loggedIn, privateControllers.editJob)
 router.get('/filterjob', privateControllers.filterjob)
+router.get('/filterjobByuser',loggedIn, privateControllers.filterjobByuser)
 router.get('/jobdiscription/:id', privateControllers.jobdiscription)
 
 module.exports = router
